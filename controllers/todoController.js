@@ -1,8 +1,11 @@
-const db = require('../models')
-const Todo = db.Todo
-const User = db.User
+const db = require('../models');
+const Todo = db.Todo;
+const User = db.User;
 
-let todoController = {
+const todoController = {
+  // Join Todo Table on user id
+  // get Todo and render using req.params.id
+  // READ
   getTodos: (req, res) => {
     return User.findByPk(req.user.id, {include: [Todo]})
       .then((user) => {
@@ -13,6 +16,9 @@ let todoController = {
         } else { return res.render('todos', {todos: user.Todos, todo: false}) }
       })
   },
+
+
+  // CREATE
   postTodo: (req, res) => {
     return Todo.create({
       name: req.body.name,
@@ -25,37 +31,52 @@ let todoController = {
        return res.redirect('/todos')
      })
   },
+
+
+
+
+
+
+
+
+
+
+
+
+  // UPDATE - EDIT
   putTodo: (req, res) => {
     return Todo.findByPk(req.params.id)
-      .then((todo) => {
-        if (req.body.done === 'on') {
+      .then( todo => {
+        if(req.body.done === 'on') {
           req.body.done = true
         } else {
           req.body.done = false
         }
         return todo.updateAttributes(req.body)
+          .then( () => {
+            return res.redirect('/todos')
+          })
+        })
+  },
+  // DELETE
+  deleteTodo: (req,res) => {
+    return Todo.findByPk(req.params.id) 
+    .then( todo => {
+      return todo.destroy()
           .then((todo) => {
             return res.redirect('/todos')
           })
       })
   },
-  deleteTodo: (req, res) => {
-    return Todo.findByPk(req.params.id)
-      .then((todo) => {
-        return todo.destroy()
-          .then((todo) => {
-            return res.redirect('/todos')
-          })
-      })
-  },
+  // Update parts, not complete
   patchTodoCheck: (req, res) => {
     return Todo.findByPk(req.params.id)
-      .then((todo) => {
+      .then( todo => {
         return todo.update(req.query)
-          .then((todo) => {
+          .then( () => {
             return 200
           })
       })
   }
-}
+};
 module.exports = todoController
