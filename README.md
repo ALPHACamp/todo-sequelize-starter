@@ -1,4 +1,4 @@
-# todo-sequelize
+# todo-sequelize-starter-code
 
 ## Getting Started
 
