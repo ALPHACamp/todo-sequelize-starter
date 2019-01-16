@@ -1,8 +1,5 @@
 const bcrypt = require('bcrypt-nodejs')
-const todoController = require('../controllers/todoController.js')
-const userController = require('../controllers/userController.js')
-const db = require('../models')
-const User = db.User
+
 
 module.exports = (app, passport) => {
   const authenticated = (req, res, next) => {
@@ -15,13 +12,6 @@ module.exports = (app, passport) => {
   app.get('/', authenticated, (req, res) => res.render('index'))
 
   app.get('/users', (req, res) => userController.getUsers(req, res))
-
-  app.get('/todos', authenticated, (req, res) => todoController.getTodos(req, res))
-  app.get('/todos/:id', todoController.getTodos)
-  app.post('/todos', todoController.postTodo)
-  app.put('/todos/:id', todoController.putTodo)
-  app.patch('/todos/:id/check', todoController.patchTodoCheck)
-  app.delete('/todos/:id', todoController.deleteTodo)
 
   app.get('/signin', (req, res) => res.render('signin'))
   app.post('/signin',
