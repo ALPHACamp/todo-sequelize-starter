@@ -6,7 +6,7 @@ const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 
-const db = require('./models')
+
 const passport = require('./config/passport')
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
@@ -18,7 +18,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.listen(port, () => {
-  db.sequelize.sync()
+
   console.log(`Example app listening on port ${port}!`)
 })
 
