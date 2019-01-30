@@ -15,8 +15,8 @@
 $ git clone ...
 $ cd ...
 $ npm install
-
-# Create a database named todo-sequelize and update config.json
+# Start MySQL server locally
+# Create a MySQL database named todo-sequelize
 ```
 
 And then
