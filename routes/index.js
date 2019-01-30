@@ -12,6 +12,13 @@ module.exports = (app, passport) => {
   app.get('/', authenticated, (req, res) => res.render('index'))
 
   app.get('/users', (req, res) => userController.getUsers(req, res))
+// ******************************************
+// ****** Place database routes here *******
+// ******************************************
+
+
+
+
 
   app.get('/signin', (req, res) => res.render('signin'))
   app.post('/signin',
