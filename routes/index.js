@@ -1,4 +1,9 @@
 const bcrypt = require('bcrypt-nodejs')
+//******   Import your todoController object   ******///
+
+const userController = require('../controllers/userController.js')
+const db = require('../models')
+const User = db.User
 
 module.exports = (app, passport) => {
   const authenticated = (req, res, next) => {
