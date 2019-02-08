@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt-nodejs')
 //******   Import your todoController object   ******///
-
+const todoController = require('../controllers/todoController.js')
 const userController = require('../controllers/userController.js')
 const db = require('../models')
 const User = db.User
