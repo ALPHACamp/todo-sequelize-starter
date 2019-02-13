@@ -7,6 +7,8 @@ const app = express()
 const port = 3000
 
 // ********    Import models     *************** 
+
+
 const passport = require('./config/passport')
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
@@ -19,6 +21,7 @@ app.use(passport.session())
 
 app.listen(port, () => {
 // ******  sync sequelize with express server   **********
+
 
   console.log(`Example app listening on port ${port}!`)
 })
