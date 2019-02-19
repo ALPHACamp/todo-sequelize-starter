@@ -5,13 +5,13 @@ const basename = path.basename(__filename)
 const db = {}
 
 // ******    Create a new instance of Sequelize with our local database config settings   *****  //
-
-
-
-
-
-
-
+const sequelize = new Sequelize('todo_sequelize', 'root', 'password', {
+  'username': 'root',
+  'password': 'password',
+  'database': 'todo_sequelize',
+  'host': '127.0.0.1',
+  'dialect': 'mysql'
+ })
 
 
 fs
